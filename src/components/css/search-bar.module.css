@@ -22,8 +22,9 @@
     border-radius: var(--radius);
     border: none;
     background-color: transparent;
-    font-size: 100%;
+    font-size: 125%;
     color: white;
+    font-family: var(--font-author);
 
     &::-webkit-input-placeholder {
         color: #ffffff4f;
