@@ -3,13 +3,17 @@ import { useRef, useState } from "react";
 import { redirect } from "next/navigation";
 import styles from "./css/search-bar.module.css";
 import IconDuckDuckGo from "./icons/IconDuckDuckGo";
+import {
+  checkQueryType,
+  prepareURL,
+  QueryType,
+  searchQueryURL,
+} from "@/lib/utils";
 
 export default function SearchBar() {
   const containerRef = useRef(null);
   const inputRef = useRef(null);
-  const [query, setQuery] = useState("");
-  const urlRegex =
-    /(?:http[s]?:\/\/.)?(?:www\.)?[-a-zA-Z0-9@%._\+~#=]{2,256}\.[a-z]{2,6}\b(?:[-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/gm;
+  const [inputValue, setInputValue] = useState("");
 
   const addFocusStyle = () => {
     const container = containerRef.current;
@@ -28,21 +32,16 @@ export default function SearchBar() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (query != "") {
-      if (urlRegex.test(query.trim())) {
-        if (query.startsWith("https://")) {
-          redirect(`${query.trim()}`, "push");
-        } else {
-          redirect(`https://${query.trim()}`, "push");
-        }
-      } else {
-        redirect(`https://duckduckgo.com/?q=${query.trim()}`, "push");
-      }
+    const queryType = checkQueryType(inputValue);
+    if (queryType == QueryType.URL) {
+      redirect(prepareURL(inputValue), "push");
+    } else {
+      redirect(searchQueryURL(inputValue), "push");
     }
   };
 
-  const handleQueryChange = (e) => {
-    setQuery(e.target.value);
+  const handleInputValueChange = (e) => {
+    setInputValue(e.target.value);
   };
 
   return (
@@ -53,8 +52,8 @@ export default function SearchBar() {
           ref={inputRef}
           onFocus={addFocusStyle}
           onBlur={removeFocusStyle}
-          value={query}
-          onInput={handleQueryChange}
+          value={inputValue}
+          onInput={handleInputValueChange}
           className={styles.input}
           type="search"
           placeholder="Search with DuckDuckGo or enter address"

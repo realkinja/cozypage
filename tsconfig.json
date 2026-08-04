@@ -3,6 +3,7 @@
     "baseUrl": "src/",
     "paths": {
       "@/components/*": ["components/*"],
+      "@/lib/*": ["lib/*"],
       "@/public/*": ["../public/*"],
     },
     "target": "ES2017",
