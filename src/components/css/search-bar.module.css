@@ -1,0 +1,52 @@
+.container {
+    box-shadow: var(--shadow);
+    display: flex;
+    padding-left: 0.85rem;
+    width: 100%;
+    width: 30%;
+    background-color: #0000004f;
+    backdrop-filter: blur(var(--blur));
+    border-radius: var(--radius);
+    cursor: text;
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    padding: 1rem 0 1rem 0.75rem;
+    width: 100%;
+    border-radius: var(--radius);
+    border: none;
+    background-color: transparent;
+    font-size: 100%;
+    color: white;
+
+    &::-webkit-input-placeholder {
+        color: #ffffff4f;
+    }
+
+    &:focus-visible {
+        outline: none;
+    }
+
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+        display: none;
+    }
+}
+
+.icon {
+    pointer-events: none;
+    width: 2rem;
+    height: 2rem;
+}
+
+.focus {
+    outline: white solid 0.15rem;
+}
