@@ -24,7 +24,6 @@
     background-color: transparent;
     font-size: 125%;
     color: white;
-    font-family: var(--font-author);
 
     &::-webkit-input-placeholder {
         color: #ffffff4f;
