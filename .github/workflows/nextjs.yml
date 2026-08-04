@@ -1,4 +1,4 @@
-name: Deploy Cozypages to Pages
+name: Deploy Cozypage to Pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -13,6 +13,9 @@ permissions:
   contents: read
   pages: write
   id-token: write
+
+env:
+  NEXT_TELEMETRY_DISABLED: 1
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
@@ -41,8 +44,6 @@ jobs:
           #
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
-      - name: Install dependencies
-        run: pnpm install
       - name: Build with Next.js
         run: pnpm next build
       - name: Upload artifact
