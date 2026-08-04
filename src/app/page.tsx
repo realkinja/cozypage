@@ -1,5 +1,4 @@
 import Background from "@/components/background";
-import Button from "@/components/button";
 import styles from "./page.module.css";
 import IconDuckDuckGo from "@/components/icons/IconDuckDuckGo";
 import SearchBar from "@/components/search-bar";
