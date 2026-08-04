@@ -35,7 +35,7 @@ export default function SearchBar() {
     const queryType = checkQueryType(inputValue);
     if (queryType == QueryType.URL) {
       redirect(prepareURL(inputValue), "push");
-    } else {
+    } else if (queryType == QueryType.Search) {
       redirect(searchQueryURL(inputValue), "push");
     }
   };
