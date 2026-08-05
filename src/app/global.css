@@ -33,7 +33,10 @@ input {
     --font-bold: 700;
     --radius: 2rem;
     --blur: 16px;
-    --shadow: 0 0 1rem #0000006f;
-    --background: #0000004f;
-    --muted: #ffffff4f;
+    --shadow: 0 0 1rem color-mix(in srgb, var(--black) 50%, transparent);
+    --white: #f8f8ff;
+    --black: #1b1b1b;
+    --foreground: var(--white);
+    --background: color-mix(in srgb, var(--black) 50%, transparent);
+    --muted: color-mix(in srgb, var(--white) 50%, transparent);
 }
