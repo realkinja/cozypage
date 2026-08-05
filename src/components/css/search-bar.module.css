@@ -3,8 +3,7 @@
     display: flex;
     padding-left: 0.85rem;
     width: 100%;
-    width: 30%;
-    background-color: #0000004f;
+    background-color: var(--background);
     backdrop-filter: blur(var(--blur));
     border-radius: var(--radius);
     cursor: text;
@@ -26,7 +25,7 @@
     color: white;
 
     &::-webkit-input-placeholder {
-        color: #ffffff4f;
+        color: var(--muted);
     }
 
     &:focus-visible {
