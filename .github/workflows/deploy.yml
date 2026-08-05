@@ -48,13 +48,6 @@ jobs:
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> "$GITHUB_OUTPUT"
-      - name: Get lowercase architecture
-        id: lowercase-arch
-        shell: bash
-        run: |
-          echo "ARCH=${RUNNER_ARCH,,}" >> "$GITHUB_OUTPUT"
-        env:
-          RUNNER_ARCH: ${{ runner.arch }}
       - name: Restore cache
         uses: actions/cache@v6
         with:
@@ -62,10 +55,10 @@ jobs:
             .next/cache
             {{ steps.pnpm-store.outputs.STORE_PATH }}
           # Generate a new cache whenever packages or source files change.
-          key: pnpm-cache-${{ runner.os }}-${{ steps.lowercase-arch.outputs.ARCH }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: pnpm-cache-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
-            pnpm-cache-${{ runner.os }}-${{ steps.lowercase-arch.outputs.ARCH }}-
+            pnpm-cache-${{ runner.os }}-
       - name: Build with Next.js
         run: pnpm next build
       - name: Upload artifact
