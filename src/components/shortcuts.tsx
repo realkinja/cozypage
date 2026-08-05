@@ -2,16 +2,35 @@
 import { redirect } from "next/navigation";
 import Button from "./button";
 import styles from "./css/shortcuts.module.css";
+import stylesdialog from "@/components/css/dialog.module.css";
 import IconPlus from "./icons/IconPlus";
 import { useEffect, useState } from "react";
 import { getShortcutsFromStorage, Shortcut } from "@/lib/utils";
+import {
+  Dialog,
+  DialogOverlay,
+  DialogContent,
+  DialogTrigger,
+  DialogTitle,
+  DialogDescription,
+  DialogHeader,
+} from "./dialog";
 
 function AddShortcut() {
   return (
-    <Button className={styles.addShortcut} variant="shortcut">
-      <IconPlus />
-      Add shortcut
-    </Button>
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button className={styles.addShortcut} variant="shortcut">
+          <IconPlus />
+          Add shortcut
+        </Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Add shortcut</DialogTitle>
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
   );
 }
 
