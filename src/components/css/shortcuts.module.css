@@ -2,6 +2,7 @@
     display: flex;
     padding: 0.625rem 0.75rem;
     background-color: var(--background);
+    box-shadow: var(--shadow);
     backdrop-filter: blur(var(--blur));
     width: 100%;
     align-items: center;
