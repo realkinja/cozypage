@@ -2,19 +2,12 @@ import styles from "./css/button.module.css";
 
 type ButtonVariant = "default" | "secondary" | "icon" | "shortcut";
 
-interface ButtonProps extends React.PropsWithChildren {
-  className?: String;
-  variant?: ButtonVariant;
-  onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
-}
-
 export default function Button({
   variant = "default",
   className,
   children,
-  onClick,
   ...props
-}: ButtonProps) {
+}: React.ComponentProps<"button"> & { variant: ButtonVariant }) {
   let variantClass: string;
 
   switch (variant) {
@@ -34,7 +27,6 @@ export default function Button({
 
   return (
     <button
-      onClick={onClick}
       className={`${variantClass}${className ? ` ${className}` : ""}`}
       {...props}
     >
