@@ -28,3 +28,25 @@ export function searchQueryURL(query: string) {
   const searchURL = "https://duckduckgo.com/?q=";
   return `${searchURL}${query}`;
 }
+
+export type Shortcut = {
+  title: string;
+  url: string;
+};
+
+export function getShortcutsFromStorage() {
+  let retrievedShortcuts = localStorage.getItem("shortcuts");
+  let shortcuts: Array<Shortcut> = JSON.parse(retrievedShortcuts);
+  console.info(`Retrieved ${shortcuts.length} shortcut(s).`);
+  return shortcuts;
+}
+
+export function saveShortcutsToStorage({
+  shortcuts,
+}: {
+  shortcuts: Array<Shortcut>;
+}) {
+  let shortcutsString = JSON.stringify(shortcuts);
+  localStorage.setItem("shortcuts", shortcutsString);
+  console.info(`Saved ${shortcuts.length} shortcut(s).`);
+}
