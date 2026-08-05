@@ -1,0 +1,46 @@
+.overlay {
+    background-color: var(--background);
+    position: fixed;
+    inset: 0;
+}
+
+.content {
+    opacity: 1;
+    border-radius: var(--radius);
+    background-color: var(--white);
+    backdrop-filter: blur(calc(var(--blur) * 2));
+    color: var(--black);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 500px;
+    max-height: 85vh;
+    padding: 25px;
+}
+
+.content:focus {
+    outline: none;
+}
+
+.contentClose {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+
+    & > svg {
+        height: 1rem;
+        width: 1rem;
+    }
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.title {
+    font-weight: var(--font-semibold);
+}
