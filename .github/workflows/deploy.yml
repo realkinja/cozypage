@@ -57,10 +57,10 @@ jobs:
           path: |
             .next/cache
           # Generate a new cache whenever packages or source files change.
-          key: pnpm-cache-${{ runner.os }}-${{ steps.lowercase-arch.outputs.value }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: pnpm-cache-${{ runner.os }}-${{ steps.lowercase-arch.outputs.ARCH }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
-            pnpm-cache-${{ runner.os }}-${{ steps.lowercase-arch.outputs.value }}-
+            pnpm-cache-${{ runner.os }}-${{ steps.lowercase-arch.outputs.ARCH }}-
       - name: Build with Next.js
         run: pnpm next build
       - name: Upload artifact
