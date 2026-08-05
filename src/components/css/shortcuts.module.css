@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    padding: 0.625rem 0.75rem;
+    background-color: var(--background);
+    backdrop-filter: blur(var(--blur));
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius);
+    justify-content: space-between;
+    overflow-x: scroll;
+    gap: 0.5rem;
+}
+
+.empty {
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.placeholder {
+    color: var(--muted);
+    font-size: 125%;
+}
+
+.addShortcut {
+    width: 100%;
+    font-size: 100%;
+    gap: 0.5rem;
+}
