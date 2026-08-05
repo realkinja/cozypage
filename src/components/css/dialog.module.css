@@ -1,15 +1,13 @@
 .overlay {
-    background-color: var(--background);
+    background-color: var(--dialog-overlay-bg);
     position: fixed;
     inset: 0;
 }
 
 .content {
-    opacity: 1;
     border-radius: var(--radius);
-    background-color: var(--white);
-    backdrop-filter: blur(calc(var(--blur) * 2));
-    color: var(--black);
+    background-color: var(--dialog-content-bg);
+    color: var(--dialog-content-fg);
     position: fixed;
     top: 50%;
     left: 50%;
@@ -17,7 +15,10 @@
     width: 90vw;
     max-width: 500px;
     max-height: 85vh;
-    padding: 25px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .content:focus {
@@ -43,4 +44,13 @@
 
 .title {
     font-weight: var(--font-semibold);
+    font-size: 125%;
+}
+
+.footer {
+    display: flex;
+    gap: 0.75rem;
+    margin: 0 -1.75rem -1.75rem -1.75rem;
+    padding: 1.25rem 1.75rem;
+    border-top: 1px solid var(--border);
 }

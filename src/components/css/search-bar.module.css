@@ -25,7 +25,7 @@
     color: white;
 
     &::-webkit-input-placeholder {
-        color: var(--muted);
+        color: var(--search-muted);
     }
 
     &:focus-visible {
@@ -47,5 +47,5 @@
 }
 
 .focus {
-    outline: white solid 0.15rem;
+    outline: var(--color-white) solid 0.15rem;
 }

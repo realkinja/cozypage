@@ -33,10 +33,39 @@ input {
     --font-bold: 700;
     --radius: 2rem;
     --blur: 16px;
-    --shadow: 0 0 1rem color-mix(in srgb, var(--black) 50%, transparent);
-    --white: #f8f8ff;
-    --black: #1b1b1b;
-    --foreground: var(--white);
-    --background: color-mix(in srgb, var(--black) 50%, transparent);
-    --muted: color-mix(in srgb, var(--white) 50%, transparent);
+    --shadow: 0 0 1rem color-mix(in srgb, var(--color-black) 50%, transparent);
+    --color-white: #f8f8ff;
+    --color-black: #1b1b1b;
+    --color-fg: var(--white);
+    --background: color-mix(in srgb, var(--color-black) 50%, transparent);
+    --border: color-mix(in srgb, var(--color-black) 35%, transparent);
+    --button-primary-bg: var(--color-black);
+    --button-primary-fg: var(--color-white);
+    --button-primary-accent: color-mix(
+        in srgb,
+        var(--color-black) 90%,
+        var(--color-white)
+    );
+    --button-secondary-border: var(--color-black);
+    --button-secondary-fg: var(--color-black);
+    --button-secondary-accent: color-mix(
+        in srgb,
+        var(--color-white) 75%,
+        var(--color-black)
+    );
+    --button-icon-accent: color-mix(
+        in srgb,
+        var(--color-black) 25%,
+        transparent
+    );
+    --button-shortcut-bg: var(--background);
+    --button-shortcut-accent: color-mix(
+        in srgb,
+        var(--color-black) 75%,
+        transparent
+    );
+    --dialog-overlay-bg: var(--background);
+    --dialog-content-bg: var(--color-white);
+    --dialog-content-fg: var(--color-black);
+    --search-muted: color-mix(in srgb, var(--color-white) 50%, transparent);
 }
