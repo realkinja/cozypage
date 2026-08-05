@@ -43,6 +43,11 @@ jobs:
           #
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
+      - name: Get pnpm store path
+        id: pnpm-store
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> "$GITHUB_OUTPUT"
       - name: Get lowercase architecture
         id: lowercase-arch
         shell: bash
@@ -55,6 +60,7 @@ jobs:
         with:
           path: |
             .next/cache
+            {{ steps.pnpm-store.outputs.STORE_PATH }}
           # Generate a new cache whenever packages or source files change.
           key: pnpm-cache-${{ runner.os }}-${{ steps.lowercase-arch.outputs.ARCH }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           # If source files changed but packages didn't, rebuild from a prior cache.
