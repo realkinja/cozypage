@@ -32,7 +32,7 @@ export default function Button({
   return (
     <button
       onClick={onClick}
-      className={`${variantClass} ${className}`}
+      className={`${variantClass}${className ? ` ${className}` : ""}`}
       {...props}
     >
       {children}

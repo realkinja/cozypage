@@ -24,6 +24,22 @@
     }
 }
 
+.icon {
+    display: flex;
+    border: none;
+    background-color: transparent;
+    padding: 0.25rem;
+    border-radius: var(--radius);
+}
+
+.icon:focus {
+    outline: none;
+}
+
+.icon:hover {
+    background-color: color-mix(in srgb, var(--black) 10%, transparent);
+}
+
 .shortcut {
     display: flex;
     border: none;
