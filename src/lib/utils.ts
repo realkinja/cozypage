@@ -41,11 +41,7 @@ export function getShortcutsFromStorage() {
   return shortcuts;
 }
 
-export function saveShortcutsToStorage({
-  shortcuts,
-}: {
-  shortcuts: Array<Shortcut>;
-}) {
+export function saveShortcutsToStorage(shortcuts: Array<Shortcut>) {
   let shortcutsString = JSON.stringify(shortcuts);
   localStorage.setItem("shortcuts", shortcutsString);
   console.info(`Saved ${shortcuts.length} shortcut(s).`);
