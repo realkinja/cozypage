@@ -4,48 +4,38 @@ import styles from "./css/dialog.module.css";
 import Button from "./button";
 import IconX from "./icons/IconX";
 
-export function Dialog({
+function Dialog({
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Root>) {
-  return <DialogPrimitive.Root data-slot="dialog" {...props} />;
+  return <DialogPrimitive.Root {...props} />;
 }
 
-export function DialogPortal({
+function DialogPortal({
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Portal>) {
-  return <DialogPrimitive.Portal data-slot="dialog-portal" {...props} />;
+  return <DialogPrimitive.Portal {...props} />;
 }
 
-export function DialogTrigger({
+function DialogTrigger({
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Trigger>) {
-  return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />;
+  return <DialogPrimitive.Trigger {...props} />;
 }
 
-export function DialogOverlay({
+function DialogOverlay({
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Overlay>) {
-  return (
-    <DialogPrimitive.Overlay
-      data-slot="dialog-overlay"
-      className={styles.overlay}
-      {...props}
-    />
-  );
+  return <DialogPrimitive.Overlay className={styles.overlay} {...props} />;
 }
 
-export function DialogContent({
+function DialogContent({
   children,
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Content>) {
   return (
     <DialogPortal>
       <DialogOverlay />
-      <DialogPrimitive.Content
-        data-slot="dialog-content"
-        className={styles.content}
-        {...props}
-      >
+      <DialogPrimitive.Content className={styles.content} {...props}>
         {children}
         <DialogPrimitive.Close asChild>
           <Button className={styles.contentClose} variant="icon">
@@ -57,18 +47,43 @@ export function DialogContent({
   );
 }
 
-export function DialogHeader({ ...props }: React.ComponentProps<"div">) {
+function DialogHeader({ ...props }: React.ComponentProps<"div">) {
   return <div className={styles.header} {...props} />;
 }
 
-export function DialogTitle({
+function DialogTitle({
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Title>) {
   return <DialogPrimitive.Title className={styles.title} {...props} />;
 }
 
-export function DialogDescription({
+function DialogDescription({
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Description>) {
   return <DialogPrimitive.Description {...props} />;
 }
+
+function DialogFooter({ children, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div className={styles.footer} {...props}>
+      {children}
+    </div>
+  );
+}
+
+function DialogClose({
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Close>) {
+  return <DialogPrimitive.Close {...props} />;
+}
+
+export {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+};
