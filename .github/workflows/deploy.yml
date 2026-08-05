@@ -53,7 +53,7 @@ jobs:
         with:
           path: |
             .next/cache
-            {{ steps.pnpm-store.outputs.STORE_PATH }}
+            ${{ steps.pnpm-store.outputs.STORE_PATH }}
           # Generate a new cache whenever packages or source files change.
           key: pnpm-cache-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           # If source files changed but packages didn't, rebuild from a prior cache.
