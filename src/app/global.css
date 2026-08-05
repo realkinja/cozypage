@@ -7,6 +7,7 @@ body {
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 p,
@@ -33,4 +34,6 @@ input {
     --radius: 2rem;
     --blur: 16px;
     --shadow: 0 0 1rem #0000006f;
+    --background: #0000004f;
+    --muted: #ffffff4f;
 }
