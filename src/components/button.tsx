@@ -1,6 +1,6 @@
 import styles from "./css/button.module.css";
 
-type ButtonVariant = "default" | "icon" | "shortcut";
+type ButtonVariant = "default" | "secondary" | "icon" | "shortcut";
 
 interface ButtonProps extends React.PropsWithChildren {
   className?: String;
@@ -20,6 +20,9 @@ export default function Button({
   switch (variant) {
     case "default":
       variantClass = styles.primary;
+      break;
+    case "secondary":
+      variantClass = styles.secondary;
       break;
     case "icon":
       variantClass = styles.icon;
