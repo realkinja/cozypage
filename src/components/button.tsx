@@ -7,7 +7,7 @@ export default function Button({
   className,
   children,
   ...props
-}: React.ComponentProps<"button"> & { variant: ButtonVariant }) {
+}: React.ComponentProps<"button"> & { variant?: ButtonVariant }) {
   let variantClass: string;
 
   switch (variant) {
