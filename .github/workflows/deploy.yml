@@ -45,6 +45,8 @@ jobs:
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
       - name: Get lowercase architecture
+        id: lowercase-arch
+        shell: bash
         run: |
           echo "ARCH=${RUNNER_ARCH,,}" >> "$GITHUB_OUTPUT"
         env:
