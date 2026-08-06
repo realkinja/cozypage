@@ -42,7 +42,6 @@ function AddShortcut({
       <DialogTrigger asChild>
         <Button className={styles.addShortcut} variant="shortcut">
           <IconPlus />
-          Add shortcut
         </Button>
       </DialogTrigger>
       <DialogContent>

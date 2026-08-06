@@ -1,5 +1,5 @@
 import Image from "next/image";
-import BackgroundImage from "@/public/images/backgrounds/miyuki.jpg";
+import BackgroundImage from "@/public/images/backgrounds/city.jpg";
 import styles from "./css/background.module.css";
 
 export default function Background() {
