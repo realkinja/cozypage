@@ -113,6 +113,13 @@ export default function Shortcuts() {
     }
   }, []);
 
+  const handleDeleteShortcut = (title: string) => {
+    const shortcutsFiltered = shortcuts.filter((s) => s.title !== title);
+
+    setShortcuts(shortcutsFiltered);
+    saveShortcutsToStorage(shortcutsFiltered);
+  };
+
   return (
     <div className={styles.container}>
       {shortcuts.map((shortcut) => (
@@ -137,7 +144,10 @@ export default function Shortcuts() {
               <IconEdit />
               Edit Shortcut
             </ContextMenuItem>
-            <ContextMenuItem variant="destructive">
+            <ContextMenuItem
+              onSelect={(e) => handleDeleteShortcut(shortcut.title)}
+              variant="destructive"
+            >
               <IconDelete />
               Delete Shortcut
             </ContextMenuItem>
