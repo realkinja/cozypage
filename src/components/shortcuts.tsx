@@ -126,7 +126,7 @@ export default function Shortcuts() {
     }
   }, []);
 
-  const handleDeleteShortcut = (e: Event, title: string) => {
+  const handleDeleteShortcut = (e: any, title: string) => {
     e.preventDefault();
     const shortcutsFiltered = shortcuts.filter((s) => s.title !== title);
 
