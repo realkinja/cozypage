@@ -46,3 +46,13 @@ export function saveShortcutsToStorage(shortcuts: Array<Shortcut>) {
   localStorage.setItem("shortcuts", shortcutsString);
   console.info(`Saved ${shortcuts.length} shortcut(s).`);
 }
+
+export function shortcutFromForm(form: any) {
+  const formData = new FormData(form);
+  const shortcut: Shortcut = {
+    title: formData.get("title") as string,
+    url: formData.get("url") as string,
+  };
+
+  return shortcut;
+}

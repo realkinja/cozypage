@@ -7,6 +7,7 @@ import {
   getShortcutsFromStorage,
   saveShortcutsToStorage,
   Shortcut,
+  shortcutFromForm,
 } from "@/lib/utils";
 import {
   Dialog,
@@ -55,12 +56,7 @@ function AddShortcut({
   const handleSaveShortcut = (e) => {
     e.preventDefault();
 
-    const form = e.target;
-    const formData = new FormData(form);
-    const shortcut: Shortcut = {
-      title: formData.get("title") as string,
-      url: formData.get("url") as string,
-    };
+    const shortcut = shortcutFromForm(e.target);
 
     setOpen(false);
     setShortcuts([...shortcuts, shortcut]);
