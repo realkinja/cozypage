@@ -1,3 +1,4 @@
+import styles from "./css/add-shortcut.module.css";
 import {
   saveShortcutsToStorage,
   Shortcut,
