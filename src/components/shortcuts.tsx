@@ -1,5 +1,4 @@
 "use client";
-import { redirect } from "next/navigation";
 import Button from "./button";
 import styles from "./css/shortcuts.module.css";
 import IconPlus from "./icons/IconPlus";
@@ -21,6 +20,7 @@ import {
 } from "./dialog";
 import Input from "./input";
 import Label from "./label";
+import Link from "next/link";
 
 function AddShortcut({
   shortcuts,
@@ -102,21 +102,18 @@ export default function Shortcuts() {
     }
   }, []);
 
-  const handleClick = (e, url) => {
-    e.preventDefault();
-    redirect(url, "push");
-  };
-
   return (
     <div className={styles.container}>
       {shortcuts.map((shortcut) => (
-        <Button
-          onClick={(e) => handleClick(e, shortcut.url)}
-          variant="shortcut"
+        <Link
           key={shortcut.title}
+          className={styles.link}
+          href={shortcut.url}
+          scroll={false}
+          prefetch={false}
         >
-          {shortcut.title[0]}
-        </Button>
+          <Button variant="shortcut">{shortcut.title[0]}</Button>
+        </Link>
       ))}
       {shortcuts.length < 9 ? (
         <AddShortcut shortcuts={shortcuts} setShortcuts={setShortcuts} />
