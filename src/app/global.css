@@ -36,9 +36,15 @@ input {
     --shadow: 0 0 1rem color-mix(in srgb, var(--color-black) 50%, transparent);
     --color-white: #f8f8ff;
     --color-black: #1b1b1b;
+    --color-destructive: #c21807;
     --color-fg: var(--white);
+    --color-black-muted: color-mix(
+        in srgb,
+        var(--color-black) 75%,
+        var(--color-white)
+    );
     --background: color-mix(in srgb, var(--color-black) 50%, transparent);
-    --border: color-mix(in srgb, var(--color-black) 35%, transparent);
+    --border: color-mix(in srgb, var(--color-black) 25%, transparent);
     --button-primary-bg: var(--color-black);
     --button-primary-fg: var(--color-white);
     --button-primary-accent: color-mix(
@@ -59,6 +65,7 @@ input {
         transparent
     );
     --button-shortcut-bg: var(--background);
+    --button-shortcut-fg: var(--color-white);
     --button-shortcut-accent: color-mix(
         in srgb,
         var(--color-black) 75%,
@@ -68,4 +75,10 @@ input {
     --dialog-content-bg: var(--color-white);
     --dialog-content-fg: var(--color-black);
     --search-muted: color-mix(in srgb, var(--color-white) 50%, transparent);
+    --context-menu-bg: var(--color-white);
+    --context-menu-fg: var(--color-black);
+    --context-menu-border: var(--border);
+    --context-menu-fg-accent: var(--color-black-muted);
+    --context-menu-separator: var(--border);
+    --context-menu-highlight-bg: var(--border);
 }
