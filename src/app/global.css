@@ -52,12 +52,30 @@ input {
         var(--color-black) 90%,
         var(--color-white)
     );
-    --button-secondary-border: var(--color-black);
+    --button-secondary-bg: color-mix(
+        in srgb,
+        var(--color-black) 25%,
+        var(--color-white)
+    );
     --button-secondary-fg: var(--color-black);
     --button-secondary-accent: color-mix(
         in srgb,
+        var(--color-black) 40%,
+        var(--color-white)
+    );
+    --button-outline-border: var(--color-black);
+    --button-outline-fg: var(--color-black);
+    --button-outline-accent: color-mix(
+        in srgb,
         var(--color-white) 75%,
         var(--color-black)
+    );
+    --button-destructive-bg: var(--color-destructive);
+    --button-destructive-fg: var(--color-white);
+    --button-destructive-accent: color-mix(
+        in srgb,
+        var(--color-destructive) 75%,
+        var(--color-white)
     );
     --button-icon-accent: color-mix(
         in srgb,
