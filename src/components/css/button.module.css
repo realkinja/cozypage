@@ -1,4 +1,4 @@
-.primary {
+.button {
     display: flex;
     gap: 0.5rem;
     border: none;
@@ -7,8 +7,6 @@
     font-weight: var(--font-medium);
     align-items: center;
     justify-content: center;
-    background-color: var(--button-primary-bg);
-    color: var(--button-primary-fg);
 
     &:focus-visible,
     &:active {
@@ -17,7 +15,6 @@
 
     &:hover {
         cursor: pointer;
-        background-color: var(--button-primary-accent);
     }
 
     > svg {
@@ -26,30 +23,21 @@
     }
 }
 
-.secondary {
-    display: flex;
-    gap: 0.5rem;
-    border: 1px solid var(--button-secondary-border);
-    border-radius: calc(var(--radius) / 3);
-    padding: 0.5rem 1rem;
-    font-weight: var(--font-medium);
-    align-items: center;
-    justify-content: center;
-    color: var(--button-secondary-fg);
-
-    &:focus-visible,
-    &:active {
-        outline: none;
-    }
+:default {
+    background-color: var(--button-primary-bg);
+    color: var(--button-primary-fg);
 
     &:hover {
-        cursor: pointer;
-        background-color: var(--button-secondary-accent);
+        background-color: var(--button-primary-accent);
     }
+}
 
-    > svg {
-        width: 1rem;
-        height: 1rem;
+.secondary {
+    border: 1px solid var(--button-secondary-border);
+    color: var(--button-secondary-fg);
+
+    &:hover {
+        background-color: var(--button-secondary-accent);
     }
 }
 
@@ -59,36 +47,30 @@
     background-color: transparent;
     padding: 0.25rem;
     border-radius: var(--radius);
-}
 
-.icon:focus {
-    outline: none;
-}
+    &:hover {
+        cursor: default;
+    }
 
-.icon:hover {
-    background-color: var(--button-icon-accent);
-}
-
-.shortcut {
-    display: flex;
-    border: none;
-    border-radius: calc(var(--radius) / 2);
-    width: 3.5rem;
-    height: 3.5rem;
-    font-weight: var(--font-bold);
-    align-items: center;
-    justify-content: center;
-    background-color: var(--button-shortcut-bg);
-    color: white;
-    font-size: 150%;
-
-    &:focus-visible,
-    &:active {
+    &:focus {
         outline: none;
     }
 
     &:hover {
-        cursor: pointer;
+        background-color: var(--button-icon-accent);
+    }
+}
+
+.shortcut {
+    border-radius: calc(var(--radius) / 2);
+    width: 3.5rem;
+    height: 3.5rem;
+    font-weight: var(--font-bold);
+    background-color: var(--button-shortcut-bg);
+    color: var(--button-shortcut-fg);
+    font-size: 150%;
+
+    &:hover {
         background-color: var(--button-shortcut-accent);
     }
 
