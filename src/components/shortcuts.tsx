@@ -5,6 +5,7 @@ import {
   getShortcutsFromStorage,
   saveShortcutsToStorage,
   Shortcut,
+  shortcutFromForm,
 } from "@/lib/utils";
 import Link from "next/link";
 import {
@@ -28,7 +29,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "./alert-dialog";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import AddShortcut from "./add-shortcut";
 import {
   Dialog,
@@ -48,8 +49,6 @@ export default function Shortcuts() {
     title: null,
     url: null,
   });
-  const [title, setTitle] = useState(selectedShortcut.title);
-  const [url, setUrl] = useState(selectedShortcut.url);
   const [isOpenAlert, setIsOpenAlert] = useState(false);
   const [isOpenDialog, setIsOpenDialog] = useState(false);
 
@@ -67,6 +66,21 @@ export default function Shortcuts() {
 
     setShortcuts(shortcutsFiltered);
     saveShortcutsToStorage(shortcutsFiltered);
+  };
+
+  const handleEditShortcut = (e: any, shortcut: Shortcut) => {
+    e.preventDefault();
+    const editedShortcut = shortcutFromForm(e.target);
+    const shortcutsUpdated = shortcuts.map((s) => {
+      if (shortcut === s) {
+        return editedShortcut;
+      } else {
+        return s;
+      }
+    });
+
+    setShortcuts(shortcutsUpdated);
+    saveShortcutsToStorage(shortcutsUpdated);
   };
 
   return (
@@ -144,38 +158,42 @@ export default function Shortcuts() {
                   Edit your shortcut here. Click 'Save' when you're done.
                 </DialogDescription>
               </DialogHeader>
-              <form className={styles.form}>
+              <form
+                onSubmit={(e) => {
+                  handleEditShortcut(e, selectedShortcut);
+                  setIsOpenDialog(false);
+                }}
+                className={styles.form}
+              >
                 <div className={styles.fields}>
                   <div className={styles.fieldGroup}>
-                    <Label htmlFor="title">Title</Label>
+                    <Label htmlFor="editTitle">Title</Label>
                     <Input
                       name="title"
-                      id="edit-title"
-                      onChange={(e) => setTitle(e.target.value)}
-                      value={selectedShortcut.title}
+                      id="editTitle"
+                      defaultValue={selectedShortcut.title}
                       required
                       placeholder="i.e. Youtube"
                     />
                   </div>
                   <div className={styles.fieldGroup}>
-                    <Label htmlFor="url">URL</Label>
+                    <Label htmlFor="editUrl">URL</Label>
                     <Input
                       name="url"
-                      id="edit-url"
-                      onChange={(e) => setUrl(e.target.value)}
-                      value={selectedShortcut.url}
+                      id="editUrl"
+                      defaultValue={selectedShortcut.url}
                       required
                       placeholder="i.e. https://youtube.com"
                     />
                   </div>
                 </div>
+                <DialogFooter>
+                  <Button type="submit">Save</Button>
+                  <DialogClose asChild>
+                    <Button variant="secondary">Cancel</Button>
+                  </DialogClose>
+                </DialogFooter>
               </form>
-              <DialogFooter>
-                <Button type="submit">Save</Button>
-                <DialogClose asChild>
-                  <Button variant="secondary">Cancel</Button>
-                </DialogClose>
-              </DialogFooter>
             </DialogContent>
           </Dialog>
         </div>
