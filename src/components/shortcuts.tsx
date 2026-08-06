@@ -21,6 +21,17 @@ import {
 import Input from "./input";
 import Label from "./label";
 import Link from "next/link";
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+  ContextMenuSubLabel,
+  ContextMenuTrigger,
+} from "./context-menu";
+import IconEdit from "./icons/IconEdit";
+import IconDelete from "./icons/IconDelete";
 
 function AddShortcut({
   shortcuts,
@@ -105,15 +116,33 @@ export default function Shortcuts() {
   return (
     <div className={styles.container}>
       {shortcuts.map((shortcut) => (
-        <Link
-          key={shortcut.title}
-          className={styles.link}
-          href={shortcut.url}
-          scroll={false}
-          prefetch={false}
-        >
-          <Button variant="shortcut">{shortcut.title[0]}</Button>
-        </Link>
+        <ContextMenu key={shortcut.title}>
+          <ContextMenuTrigger asChild>
+            <Link
+              className={styles.link}
+              href={shortcut.url}
+              scroll={false}
+              prefetch={false}
+            >
+              <Button variant="shortcut">{shortcut.title[0]}</Button>
+            </Link>
+          </ContextMenuTrigger>
+          <ContextMenuContent>
+            <div className={styles.contextTop}>
+              <ContextMenuLabel>{shortcut.title}</ContextMenuLabel>
+              <ContextMenuSubLabel>{shortcut.url}</ContextMenuSubLabel>
+            </div>
+            <ContextMenuSeparator />
+            <ContextMenuItem>
+              <IconEdit />
+              Edit Shortcut
+            </ContextMenuItem>
+            <ContextMenuItem variant="destructive">
+              <IconDelete />
+              Delete Shortcut
+            </ContextMenuItem>
+          </ContextMenuContent>
+        </ContextMenu>
       ))}
       {shortcuts.length < 9 ? (
         <AddShortcut shortcuts={shortcuts} setShortcuts={setShortcuts} />
