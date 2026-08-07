@@ -16,13 +16,16 @@
 }
 
 .input {
-    padding: 1rem 0 1rem 0.75rem;
+    padding: 1rem 0.75rem;
     width: 100%;
     border-radius: var(--radius);
     border: none;
     background-color: transparent;
     font-size: 125%;
     color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     &::-webkit-input-placeholder {
         color: var(--search-muted);

@@ -21,9 +21,22 @@
 }
 
 .widgets {
+    padding: 0px 1rem;
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 100%;
     gap: 2rem;
     align-items: center;
+
+    @media (min-width: 640px) {
+        width: 75%;
+    }
+
+    @media (min-width: 1024px) {
+        width: 50%;
+    }
+
+    @media (min-width: 1280px) {
+        width: 35%;
+    }
 }
