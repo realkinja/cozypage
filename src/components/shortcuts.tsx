@@ -29,7 +29,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "./alert-dialog";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import AddShortcut from "./add-shortcut";
 import {
   Dialog,
@@ -46,6 +46,7 @@ import Input from "./input";
 export default function Shortcuts() {
   const [shortcuts, setShortcuts] = useState(new Array<Shortcut>());
   const [selectedShortcut, setSelectedShortcut] = useState<Shortcut>({
+    id: null,
     title: null,
     url: null,
   });
@@ -60,9 +61,7 @@ export default function Shortcuts() {
 
   const handleDeleteShortcut = (e: any, shortcut: Shortcut) => {
     e.preventDefault();
-    const shortcutsFiltered = shortcuts.filter(
-      (s) => s.title !== shortcut.title,
-    );
+    const shortcutsFiltered = shortcuts.filter((s) => s.id !== shortcut.id);
 
     setShortcuts(shortcutsFiltered);
     saveShortcutsToStorage(shortcutsFiltered);
@@ -86,7 +85,7 @@ export default function Shortcuts() {
   return (
     <div className={styles.container}>
       {shortcuts.map((shortcut) => (
-        <div key={shortcut.title}>
+        <div key={shortcut.id}>
           <ContextMenu>
             <ContextMenuTrigger asChild>
               <Link
@@ -165,6 +164,12 @@ export default function Shortcuts() {
                 }}
                 className={styles.form}
               >
+                <input
+                  type="hidden"
+                  name="id"
+                  id="editId"
+                  value={selectedShortcut.id}
+                />
                 <div className={styles.fields}>
                   <div className={styles.fieldGroup}>
                     <Label htmlFor="editTitle">Title</Label>

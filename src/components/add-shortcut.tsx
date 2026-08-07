@@ -16,7 +16,7 @@ import {
 } from "./dialog";
 import Input from "./input";
 import Label from "./label";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import IconPlus from "./icons/IconPlus";
 import Button from "./button";
 
@@ -28,6 +28,8 @@ function AddShortcut({
   setShortcuts: Dispatch<SetStateAction<Shortcut[]>>;
 }) {
   const [open, setOpen] = useState(false);
+  const newId =
+    shortcuts.length > 0 ? shortcuts[shortcuts.length - 1].id + 1 : 1;
   const handleSaveShortcut = (e) => {
     e.preventDefault();
     const shortcut = shortcutFromForm(e.target);
@@ -52,6 +54,7 @@ function AddShortcut({
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSaveShortcut} className={styles.form}>
+          <input type="hidden" id="id" name="id" value={newId} />
           <div className={styles.fields}>
             <div className={styles.fieldGroup}>
               <Label htmlFor="title">Title</Label>
@@ -67,7 +70,6 @@ function AddShortcut({
               <Input
                 name="url"
                 id="url"
-                required
                 placeholder="i.e. https://youtube.com"
               />
             </div>

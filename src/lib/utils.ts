@@ -30,6 +30,7 @@ export function searchQueryURL(query: string) {
 }
 
 export type Shortcut = {
+  id: number;
   title: string;
   url: string;
 };
@@ -50,6 +51,7 @@ export function saveShortcutsToStorage(shortcuts: Array<Shortcut>) {
 export function shortcutFromForm(form: any) {
   const formData = new FormData(form);
   const shortcut: Shortcut = {
+    id: parseInt(formData.get("id") as string),
     title: formData.get("title") as string,
     url: formData.get("url") as string,
   };
