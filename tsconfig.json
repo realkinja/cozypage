@@ -32,6 +32,7 @@
     "**/*.mts",
     "**/*.ts",
     "**/*.tsx",
+    "src/**/*.d.ts",
   ],
   "exclude": ["node_modules"],
 }

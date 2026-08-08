@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./css/punishment.module.css";
 import jsBadge from "@/public/images/badges/js-warning.gif";
-import jsLogo from "@/public/images/backgrounds/javascript.png";
+import punishmentSound from "@/public/sound/punishment.wav";
 
 function Punishment() {
   return (
@@ -13,7 +13,7 @@ function Punishment() {
           className={styles.badge}
         />
         <audio controls autoPlay loop>
-          <source src="/sound/punishment.wav" type="audio/wav" />
+          <source src={punishmentSound} type="audio/wav" />
         </audio>
       </div>
     </div>
