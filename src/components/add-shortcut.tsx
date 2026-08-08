@@ -16,7 +16,7 @@ import {
 } from "./dialog";
 import Input from "./input";
 import Label from "./label";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import IconPlus from "./icons/IconPlus";
 import Button from "./button";
 

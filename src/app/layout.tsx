@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./global.css";
 import localFont from "next/font/local";
+import Punishment from "@/components/punishment";
 
 const author = localFont({
   variable: "--font-author",
@@ -45,7 +46,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={author.className}>
-      <body>{children}</body>
+      <body>
+        <noscript>
+          <Punishment />
+        </noscript>
+        {children}
+      </body>
     </html>
   );
 }
