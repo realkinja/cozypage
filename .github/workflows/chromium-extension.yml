@@ -67,7 +67,7 @@ jobs:
           mv out/* .
           rm -r out
           for f in _*; do [ -e "$f" ] && mv "$f" "static$f"; done
-          sed 's/\/_next\//\/static_next\//g' *
+          find . -type f -exec sed -i 's#/_next/#/static_next/#g' {} +
       - name: Setup Chromium
         run: |
           export REVISION=$(curl -s -S "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2FLAST_CHANGE?alt=media")
