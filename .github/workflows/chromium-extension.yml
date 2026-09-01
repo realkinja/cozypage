@@ -63,6 +63,9 @@ jobs:
           name: static-export
       - name: Install Chromium
         run: sudo apt install -y chromium-browser
+      - name: (TEMP) Change the directory of newtab's override
+        shell: bash
+        run: sed -i -e 's/index.html/out\/index.html/' manifest.json
       - name: Pack extension
         shell: bash
         run: chromium --pack-extension=$(pwd)
