@@ -1,6 +1,9 @@
 name: Export and pack Chromium extension
 
 on:
+  push:
+    branches: ["main"]
+
   workflow_dispatch:
 
 permissions:
