@@ -61,8 +61,13 @@ jobs:
         uses: actions/download-artifact@v5
         with:
           name: static-export
-      - name: Install Chromium
-        run: sudo apt install -y chromium-browser
+      - name: Setup Chromium
+        run: |
+          export REVISION=$(curl -s -S "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2FLAST_CHANGE?alt=media")
+          curl "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F$REVISION%2Fchrome-linux.zip?alt=media" -o $RUNNER_TEMP/$REVISION-chrome-linux.zip
+          cd $RUNNER_TEMP
+          unzip $REVISION-chrome-linux.zip
+          export PATH="$RUNNER_TEMP/chrome-linux:$PATH"
       - name: (TEMP) Change the directory of newtab's override
         shell: bash
         run: sed -i -e 's/index.html/out\/index.html/' manifest.json
@@ -70,8 +75,8 @@ jobs:
         id: crx
         shell: bash
         run: |
-          chromium --pack-extension=$(pwd)
-          echo "OUT=$(find ../ -type f -name '*.crx' -print -quit | xargs readlink -f)" >> "$GITHUB_OUTPUT"
+          chrome --pack-extension=$(pwd)
+          echo "OUT=$(find ../ -type f -name '*.crx' -print | xargs readlink -f)" >> "$GITHUB_OUTPUT"
       - name: Upload extension artifact
         uses: actions/upload-artifact@v4
         with:
