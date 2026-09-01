@@ -61,7 +61,11 @@ jobs:
         uses: actions/download-artifact@v5
         with:
           name: static-export
-      - name: Check working directory content
+      - name: Install Chromium
+        run: sudo apt install -y chromium-browser
+      - name: Pack extension
         shell: bash
-        run: |
-          ls $GITHUB_WORKSPACE
+        run: chromium --pack-extension=$(pwd)
+      - name: Check directory for results
+        shell: bash
+        run: ls
