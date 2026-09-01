@@ -3,7 +3,7 @@
   "name": "Cozypage Override",
   "description": "Overrides new tab page with Cozypage",
   "version": "1.0.0",
-  "content_security_policy": "script-src: 'self' 'unsafe-inline'",
+  "content_security_policy": "script-src: 'unsafe-inline'",
   "chrome_url_overrides": {
     "newtab": "index.html"
   }
