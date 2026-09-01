@@ -75,7 +75,7 @@ jobs:
         shell: bash
         run: |
           export PATH="$RUNNER_TEMP/chrome-linux:$PATH"
-          chrome --pack-extension=$(pwd)
+          chrome --no-sandbox --pack-extension=$(pwd)
           echo "OUT=$(find ../ -type f -name '*.crx' -print | xargs readlink -f)" >> "$GITHUB_OUTPUT"
       - name: Upload extension artifact
         uses: actions/upload-artifact@v4
