@@ -71,7 +71,7 @@ jobs:
         shell: bash
         run: |
           chromium --pack-extension=$(pwd)
-          echo "OUT=$(find ../ -type f -name '*.crx' -print -quit)" >> "$GITHUB_OUTPUT"
+          echo "OUT=$(find ../ -type f -name '*.crx' -print -quit | xargs readlink -f)" >> "$GITHUB_OUTPUT"
       - name: Upload extension artifact
         uses: actions/upload-artifact@v4
         with:
