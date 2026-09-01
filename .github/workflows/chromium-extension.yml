@@ -61,15 +61,19 @@ jobs:
         uses: actions/download-artifact@v5
         with:
           name: static-export
+      - name: Move and sanitize static export
+        shell: bash
+        run: |
+          mv out/* .
+          rm -r out
+          for f in _*; do [ -e "$f" ] && mv "$f" "static$f"; done
+          sed 's/\/_next\//\/static_next\//g' *
       - name: Setup Chromium
         run: |
           export REVISION=$(curl -s -S "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2FLAST_CHANGE?alt=media")
           curl "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F$REVISION%2Fchrome-linux.zip?alt=media" -o $RUNNER_TEMP/$REVISION-chrome-linux.zip
           cd $RUNNER_TEMP
           unzip $REVISION-chrome-linux.zip
-      - name: (TEMP) Change the directory of newtab's override
-        shell: bash
-        run: sed -i -e 's/index.html/out\/index.html/' manifest.json
       - name: Pack extension
         id: crx
         shell: bash
