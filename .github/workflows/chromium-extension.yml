@@ -50,7 +50,7 @@ jobs:
         with:
           name: static-export
           path: |
-            ./out/*
+            out/*
             manifest.json
 
   build-extension:
