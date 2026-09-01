@@ -60,7 +60,6 @@ jobs:
         shell: bash
         run: |
           ls $RUNNER_TEMP
-            - name: Check temp directory content
       - name: Check passed directory content
         env:
           DIRECTORY: ${{needs.build.outputs.export_dir}}
