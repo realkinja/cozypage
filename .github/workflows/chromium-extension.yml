@@ -67,8 +67,13 @@ jobs:
         shell: bash
         run: sed -i -e 's/index.html/out\/index.html/' manifest.json
       - name: Pack extension
+        id: crx
         shell: bash
-        run: chromium --pack-extension=$(pwd)
-      - name: Find crx file
-        shell: bash
-        run: echo $(find ../ -type f -name '*.crx')
+        run: |
+          chromium --pack-extension=$(pwd)
+          echo "OUT=$(find ../ -type f -name '*.crx' -print -quit)" >> "$GITHUB_OUTPUT"
+      - name: Upload extension artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: chromium-extension
+          path: ${{ steps.crx.outputs.out }}
