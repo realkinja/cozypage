@@ -71,4 +71,4 @@ jobs:
         run: chromium --pack-extension=$(pwd)
       - name: Find crx file
         shell: bash
-        run: echo $(find . -type f -name '*.crx')
+        run: echo $(find ../ -type f -name '*.crx')
