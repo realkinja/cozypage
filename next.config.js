@@ -6,11 +6,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  experimental: {
-    sri: {
-      algorithm: "sha256",
-    },
-  },
   turbopack: {
     rules: {
       "*.wav": {
