@@ -46,9 +46,13 @@ jobs:
 
   prepare:
     runs-on: ubuntu-latest
+    needs: build
     steps:
-      - name: Check working and temp directories contents
+      - name: Check working directory content
         shell: bash
         run: |
           ls $GITHUB_WORKSPACE
+      - name: Check temp directory content
+        shell: bash
+        run: |
           ls $RUNNER_TEMP
