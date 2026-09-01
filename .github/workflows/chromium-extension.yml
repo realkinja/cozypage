@@ -1,0 +1,54 @@
+name: Export and pack Chromium extension
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  NEXT_TELEMETRY_DISABLED: 1
+
+concurrency:
+  group: "chromium-extension"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Setup PNPM
+        uses: pnpm/setup@v1
+        with:
+          version: 11
+          runtime: node@24
+      - name: Get pnpm store path
+        id: pnpm-store
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> "$GITHUB_OUTPUT"
+      - name: Restore cache
+        uses: actions/cache@v6
+        with:
+          path: |
+            .next/cache
+            ${{ steps.pnpm-store.outputs.STORE_PATH }}
+          # Generate a new cache whenever packages or source files change.
+          key: pnpm-cache-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          # If source files changed but packages didn't, rebuild from a prior cache.
+          restore-keys: |
+            pnpm-cache-${{ runner.os }}-
+      - name: Build with Next.js
+        run: pnpm next build
+      # Where the fun begins.
+
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check working and temp directories contents
+        shell: bash
+        run: |
+          ls $GITHUB_WORKSPACE
+          ls $RUNNER_TEMP
