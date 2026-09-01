@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  build-cozypages:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -50,7 +50,7 @@ jobs:
             ./out
             manifest.json
 
-  prepare:
+  build-extension:
     runs-on: ubuntu-latest
     needs: build
     steps:
